@@ -1,0 +1,52 @@
+export const categories = [
+    {
+        id:1,
+        img:"https://www.magasin.dk/on/demandware.static/-/Library-Sites-mdn-library/default/dw7d4b4568/Megamenu/Herre/SS22_category_entrance_herre_Skjorter.jpg",
+        title:"SHIRT STYLE!"
+    },
+    {
+        id:2,
+        img:"https://thumbs.dreamstime.com/b/pile-blue-jeans-varying-shades-denim-light-dark-washed-stack-blue-jeans-varying-shades-washed-denim-159872829.jpg",
+        title:"JEANS"
+    },
+    {
+        id:3,
+        img:"https://c.stocksy.com/a/v6I700/z9/1737917.jpg",
+        title:"SWEATERS"
+    }
+]
+
+export const popularProducts = [
+    {
+      id:1,
+      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    },
+    {
+      id:2,
+      img:"https://cdn.shopify.com/s/files/1/0044/1899/4210/products/659fb9efd41a4cb39e89e0758e89429e_740x.jpg?v=1550700008",
+    },
+    {
+      id:3,
+      img:"https://m.media-amazon.com/images/I/61u3scufnVL._UX569_.jpg",
+    },
+    {
+      id:4,
+      img:"https://www.filmyvastra.com/wp-content/uploads/2019/08/batman-full-body-final_opt.jpg",
+    },
+    {
+      id:5,
+      img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    },
+    {
+      id:6,
+      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    },
+    {
+      id:7,
+      img:"https://static-01.daraz.com.np/p/540000c986a7ada02e98cd6b3109a4b8.jpg",
+    },
+    {
+      id:8,
+      img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+    },
+  ]
