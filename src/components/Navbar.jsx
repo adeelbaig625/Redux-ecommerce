@@ -27,11 +27,12 @@ const SearchContainer=styled.div`
 const Left= styled.div`
 flex:1;
 display:flex;
-align-items:center
+align-items:center;
 `
 
 const Input=styled.input`
 border:none;`
+
 const Center= styled.div`
 text-align:center;
 flex:1;
