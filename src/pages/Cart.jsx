@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Anouncement from '../components/Anouncement'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
+import { Add, Remove } from '@mui/icons-material'
 
 const Container = styled.div`
     
@@ -88,9 +89,56 @@ const PriceDetail = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const ProductAmountContainer=styled.div`
+display:flex;
+align-items: center;
+margin-bottom: 20px;
+`
+const ProductAmount=styled.div`
+font-size: 24px;
+margin: 5px;
+`
+const ProductPrice=styled.div`
+font-size: 30px;
+font-weight: 200;`
+
+const Hr= styled.hr`
+    background-color: #eee;
+    border: none;
+    height: 1px;
+`
 const Summary = styled.div`
     flex: 1;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 50vh;
 `;
+
+const SummaryTitle=styled.h1`
+font-weight: 200;
+`
+
+const SummaryItem=styled.div`
+margin: 30px 0px;
+display: flex;
+justify-content: space-between;
+font-weight: ${props=>props.type=== "total" && "500"};
+font-weight: ${props=>props.type=== "total" && "24px"};
+`
+
+const SummaryItemText=styled.span``
+
+const SummaryItemPrice=styled.span``
+
+const SummaryButton=styled.button`
+width: 100%;
+padding: 10px;
+background-color: black;
+color: white;
+font-weight: 600;
+`
 
 function Cart() {
   return (
@@ -122,11 +170,51 @@ function Cart() {
                             </Details>
                         </ProductDetail>
                         <PriceDetail>
-                            price 
+                            <ProductAmountContainer>
+                                <Add/>
+                                <ProductAmount>2</ProductAmount>
+                                <Remove/> 
+                            </ProductAmountContainer>
+                            <ProductPrice>$ 300</ProductPrice>
+                        </PriceDetail>
+                    </Product>
+                    <Hr/>
+                     <Product>
+                        <ProductDetail>
+                            <Image src='http://atlas-content-cdn.pixelsquid.com/stock-images/nike-air-jordan-1-red-and-black-high-top-sneakers-VaKJlJ0-600.jpg'/>
+                            <Details>
+                                <ProductName><b>Product:</b> AIR JORDAN SHOES</ProductName>
+                                <ProductId><b>Id:</b> 9323132111</ProductId>
+                                <ProductColor color='black'/>
+                                <ProductSize><b>Size:</b> 37.5</ProductSize>
+                            </Details>
+                        </ProductDetail>
+                        <PriceDetail>
+                            <ProductAmountContainer>
+                                <Add/>
+                                <ProductAmount>2</ProductAmount>
+                                <Remove/> 
+                            </ProductAmountContainer>
+                            <ProductPrice>$ 300</ProductPrice>
                         </PriceDetail>
                     </Product>
                 </Info>
-                <Summary>summary</Summary>
+                <Summary>
+                    <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                    <SummaryItem>
+                        <SummaryItemText>Subtotal</SummaryItemText>
+                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                    </SummaryItem>
+                    <SummaryItem>
+                        <SummaryItemText>Estimate Shipping</SummaryItemText>
+                        <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+                    </SummaryItem>
+                    <SummaryItem type="total">
+                        <SummaryItemText >Total</SummaryItemText>
+                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                    </SummaryItem>
+                    <SummaryButton>CHECKOUT NOW</SummaryButton>
+                </Summary>
             </Bottom>
         </Wrapper>
         <Footer/>
