@@ -37,6 +37,7 @@ color:white;
 display: flex;
 align-items:center;
 justify-content: center;
+margin-right: 20px;
 background-color: #${props=>props.color};
 `;
 

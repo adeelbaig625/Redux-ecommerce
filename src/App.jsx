@@ -7,7 +7,7 @@ import ProductList from './pages/ProductList';
 import Cart from './pages/Cart';
 
 function App() {
- return <Home/>
+ return <Cart/>
 }
 
 export default App;
