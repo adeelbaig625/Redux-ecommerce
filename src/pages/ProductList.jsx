@@ -1,6 +1,7 @@
 
 import React from 'react'
 import styled from "styled-components"
+import {useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Anouncement from '../components/Anouncement'
 import Products from '../components/Products'
@@ -35,11 +36,12 @@ const Select = styled.select`
 
 const Option = styled.option``;
 function ProductList() {
+  let params=useParams()
   return (
     <Container>
         <Navbar/>
         <Anouncement/>
-        <Title>Dresses</Title>
+        <Title>{params.category}</Title>
         <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>

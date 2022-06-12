@@ -2,17 +2,20 @@ export const categories = [
     {
         id:1,
         img:"https://www.magasin.dk/on/demandware.static/-/Library-Sites-mdn-library/default/dw7d4b4568/Megamenu/Herre/SS22_category_entrance_herre_Skjorter.jpg",
-        title:"SHIRT STYLE!"
+        title:"SHIRT STYLE!",
+        cat:"Shirt"
     },
     {
         id:2,
         img:"https://thumbs.dreamstime.com/b/pile-blue-jeans-varying-shades-denim-light-dark-washed-stack-blue-jeans-varying-shades-washed-denim-159872829.jpg",
-        title:"JEANS"
+        title:"JEANS",
+        cat:"Jeans"
     },
     {
         id:3,
         img:"https://c.stocksy.com/a/v6I700/z9/1737917.jpg",
-        title:"SWEATERS"
+        title:"SWEATERS",
+        cat:"Sweaters"
     }
 ]
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router,Switch,Route,Link } from 'react-router-dom';
+
 import './App.css';
 import Home from './pages/Home';
 import Product from './pages/Product';
@@ -9,35 +9,21 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     Link
   } from "react-router-dom";
 function App() {
  return <Router>
-     <Switch>
-         <Route exact path="/">
-            <Home/>
-         </Route>
-         <Route path="/cart">
-            <Cart/>
-         </Route>
-         <Route path="/products/:category">
-            <ProductList/>
-         </Route>
-         <Route path="/products/:category">
-            <Product/>
-         </Route>
-         <Route path="/products/:id">
-            <Product/>
-         </Route>
-         <Route path="/login">
-            <Login/>
-         </Route>
-         <Route path="/register">
-            <Register/>
-         </Route>
-     </Switch>
+     <Routes>
+         <Route path="/" element={<Home/>}/>
+         <Route path="/cart" element={<Cart/>}/>
+         <Route path="/products/:category" element={<ProductList/>}/>
+         <Route path="/products/:id"element={ <Product/>}/>
+         <Route path="/login" element={<Login/>}/> 
+         <Route path="/register" element={<Register/>}/>
+        
+     </Routes>
  </Router>
 }
 
