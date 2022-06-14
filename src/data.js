@@ -3,7 +3,7 @@ export const categories = [
         id:1,
         img:"https://www.magasin.dk/on/demandware.static/-/Library-Sites-mdn-library/default/dw7d4b4568/Megamenu/Herre/SS22_category_entrance_herre_Skjorter.jpg",
         title:"SHIRT STYLE!",
-        cat:"Shirt"
+        cat:"Shirts"
     },
     {
         id:2,

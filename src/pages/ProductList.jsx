@@ -37,6 +37,16 @@ const Select = styled.select`
 const Option = styled.option``;
 function ProductList() {
   let params=useParams()
+  const [filter,setFilters]=React.useState({});
+  const [sort,setSort]=React.useState("newest");
+
+  const handleFilters=(e)=>
+  {
+    const value=e.target.value;
+    setFilters({
+      ...filter,[e.target.name]:value
+    })
+  }
   return (
     <Container>
         <Navbar/>
@@ -69,14 +79,14 @@ function ProductList() {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
+          <Select onChange={e=>setSort(e.target.value)}>
+            <Option value="newest" >Newest</Option>
+            <Option value="asc">Price (asc)</Option>
+            <Option value="desc">Price (desc)</Option>
           </Select>
         </Filter>
         </FilterContainer>
-        <Products/>
+        <Products cat={params.category} filters={filter} sort={sort}/>
         <Newsletter/>
         <Footer/>
     </Container>

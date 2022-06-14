@@ -7,7 +7,7 @@ const Container=styled.div`
    padding: 20px;
    flex-wrap: wrap;
 `
-const Products = () => {
+const Products = ({cat,filters,sort}) => {
   return (
     <Container>
         {popularProducts.map(item=>(
