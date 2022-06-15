@@ -7,7 +7,8 @@ import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Add, Remove } from '@mui/icons-material'
 import { mobile } from '../responsive'
-
+import {useParams } from 'react-router-dom'
+import {publicRequest} from '../requestMethod'
 const Container=styled.div``
 const Wrapper=styled.div`
 padding:50px;
@@ -101,46 +102,76 @@ font-weight: 500;
 `
 
 function Product() {
+  let params=useParams()
+  const id=params.id
+  const [product,setProduct]=React.useState({});
+  const [quantity,setQuantity]=React.useState(1)
+  React.useEffect(()=>
+  {
+   const getProduct= async ()=>
+   {
+    try{
+      const res=await publicRequest.get("/products/find/"+id)
+      console.log(res.data)
+      setProduct(res.data)
+    }catch{}
+   }
+   getProduct()
+  },[id])
+
+  const handleQuantity = (type) => {
+    if(type==="desc")
+    {
+      console.log(product.size)
+      quantity>1 && setQuantity(quantity-1)
+    }
+    else
+    {
+     setQuantity(quantity+1)
+    }
+    
+  }
   return (
    <Container>
        <Navbar/>
        <Announcement/>
        <Wrapper>
         <ImgContainer>
-        <Image src="https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png"/>
+        <Image src={product?.img}/>
         </ImgContainer>
         <InfoContainer>
-            <Title>SweatShirt</Title>
+            <Title>{product?.title}</Title>
             <Desc>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, expedita sed. Adipisci mollitia quia quas maiores delectus aliquid doloribus ad, sunt illo velit soluta fugiat eius in sed aperiam debitis.
+            {product?.desc}
             </Desc>
-            <Price>$20</Price>
+            <Price>$ {product?.price}</Price>
             <FilterContainer>
               <Filter>
                 <FilterTitle>Color</FilterTitle>
-                <FilterColor color="black"/>
-
-                <FilterColor color="darkblue"/>
-                <FilterColor color="gray"/>
+                {product.color?.map((c)=>
+                {
+                  <FilterColor color={c} key={c}/>
+                })}
+              
                 
               </Filter>
               <Filter>
                 <FilterTitle>Size</FilterTitle>
                 <FilterSize>
-                  <FilterSizeOption>XS</FilterSizeOption>
-                  <FilterSizeOption>S</FilterSizeOption>
-                  <FilterSizeOption>M</FilterSizeOption>
-                  <FilterSizeOption>L</FilterSizeOption>
-                  <FilterSizeOption>XL</FilterSizeOption>
+                {product.size?.map((s)=>
+                {
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                })}
+                
                 </FilterSize>
                 
               </Filter>
             </FilterContainer>
       <AddContainer>
         <AmountContainer>
-        <Remove/>
-          <Amount>1</Amount>
-          <Add/>
+        <Remove onClick={()=>handleQuantity("desc")}/>
+          <Amount>{quantity}</Amount>
+          <Add onClick={()=>handleQuantity("inc")}/>
         </AmountContainer>
         <Button>ADD TO CART</Button>
       </AddContainer>
