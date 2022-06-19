@@ -1,5 +1,4 @@
 import React from 'react'
-
 import styled from "styled-components"
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Anouncement'
@@ -9,6 +8,9 @@ import { Add, Remove } from '@mui/icons-material'
 import { mobile } from '../responsive'
 import {useParams } from 'react-router-dom'
 import {publicRequest} from '../requestMethod'
+import {addProduct} from '../redux/cartRedux'
+import {useDispatch} from 'react-redux'
+
 const Container=styled.div``
 const Wrapper=styled.div`
 padding:50px;
@@ -58,6 +60,7 @@ const FilterColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border:1px solid #000;
   background-color: ${props=>props.color};
   margin: 0px 5px;
   cursor:pointer;
@@ -106,6 +109,9 @@ function Product() {
   const id=params.id
   const [product,setProduct]=React.useState({});
   const [quantity,setQuantity]=React.useState(1)
+  const [color,setColor] = React.useState("");
+  const [size, setSize] = React.useState("");
+  const dispatch = useDispatch()
   React.useEffect(()=>
   {
    const getProduct= async ()=>
@@ -128,8 +134,13 @@ function Product() {
     else
     {
      setQuantity(quantity+1)
-    }
-    
+    } 
+  }
+
+  const handleClick=()=>
+  {
+    dispatch(addProduct({product,quantity,price:product.price * quantity}));
+  
   }
   return (
    <Container>
@@ -149,9 +160,8 @@ function Product() {
               <Filter>
                 <FilterTitle>Color</FilterTitle>
                 {product.color?.map((c)=>
-                {
                   <FilterColor color={c} key={c}/>
-                })}
+                )}
               
                 
               </Filter>
@@ -159,9 +169,8 @@ function Product() {
                 <FilterTitle>Size</FilterTitle>
                 <FilterSize>
                 {product.size?.map((s)=>
-                {
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                })}
+                )}
                 
                 </FilterSize>
                 
@@ -173,7 +182,7 @@ function Product() {
           <Amount>{quantity}</Amount>
           <Add onClick={()=>handleQuantity("inc")}/>
         </AmountContainer>
-        <Button>ADD TO CART</Button>
+        <Button onClick={()=>handleClick()}>ADD TO CART</Button>
       </AddContainer>
         </InfoContainer>
        </Wrapper>
