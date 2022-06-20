@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { Add, Remove } from '@mui/icons-material'
 import { mobile } from '../responsive'
-
+import { useSelector } from 'react-redux';
 const Container = styled.div``;
 
 const Wrapper = styled.div`
