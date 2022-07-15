@@ -154,6 +154,7 @@ const Button = styled.button`
 `;
 
 function Cart() {
+  const cart = useSelector(state=>state.cart)
   return (
     <Container>
         <Navbar/>
@@ -172,51 +173,39 @@ function Cart() {
             </Top>
             <Bottom>
                 <Info>
+                  {cart?.products.map(product=>(
+                    <>
                     <Product>
-                        <ProductDetail>
-                            <Image src='http://atlas-content-cdn.pixelsquid.com/stock-images/nike-air-jordan-1-red-and-black-high-top-sneakers-VaKJlJ0-600.jpg'/>
-                            <Details>
-                                <ProductName><b>Product:</b> AIR JORDAN SHOES</ProductName>
-                                <ProductId><b>Id:</b> 9323132111</ProductId>
-                                <ProductColor color='black'/>
-                                <ProductSize><b>Size:</b> 37.5</ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/> 
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 300</ProductPrice>
-                        </PriceDetail>
-                    </Product>
-                    <Hr/>
-                     <Product>
-                        <ProductDetail>
-                            <Image src='http://atlas-content-cdn.pixelsquid.com/stock-images/nike-air-jordan-1-red-and-black-high-top-sneakers-VaKJlJ0-600.jpg'/>
-                            <Details>
-                                <ProductName><b>Product:</b> AIR JORDAN SHOES</ProductName>
-                                <ProductId><b>Id:</b> 9323132111</ProductId>
-                                <ProductColor color='black'/>
-                                <ProductSize><b>Size:</b> 37.5</ProductSize>
-                            </Details>
-                        </ProductDetail>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/> 
-                            </ProductAmountContainer>
-                            <ProductPrice>$ 300</ProductPrice>
-                        </PriceDetail>
-                    </Product>
+                    <ProductDetail>
+                        <Image src={product.img}/>
+                        <Details>
+                            <ProductName><b>Product:</b> {product.title}</ProductName>
+                            <ProductId><b>Id:</b> {product._id}</ProductId>
+                            <ProductColor color={product.color}/>
+                            <ProductSize><b>Size:</b> {product.size}</ProductSize>
+                        </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                        <ProductAmountContainer>
+                            <Add/>
+                            <ProductAmount>{product.quantity}</ProductAmount>
+                            <Remove/> 
+                        </ProductAmountContainer>
+                        <ProductPrice>$ {product.price*product.quantity}</ProductPrice>
+                    </PriceDetail>
+                </Product>
+                <Hr/>
+                </>
+                  ))  
+                    }
+                  
+                  
                 </Info>
                 <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                     <SummaryItem>
                         <SummaryItemText>Subtotal</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                        <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <SummaryItem>
                         <SummaryItemText>Estimate Shipping</SummaryItemText>
@@ -224,7 +213,7 @@ function Cart() {
                     </SummaryItem>
                     <SummaryItem type="total">
                         <SummaryItemText >Total</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                        <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <Button>CHECKOUT NOW</Button>
                 </Summary>
