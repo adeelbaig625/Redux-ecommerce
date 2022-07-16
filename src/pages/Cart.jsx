@@ -6,6 +6,9 @@ import styled from 'styled-components'
 import { Add, Remove } from '@mui/icons-material'
 import { mobile } from '../responsive'
 import { useSelector } from 'react-redux';
+import StripeCheckout from 'react-stripe-checkout'
+
+const KEY=process.env.REACT_APP_STRIPE;
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -155,6 +158,11 @@ const Button = styled.button`
 
 function Cart() {
   const cart = useSelector(state=>state.cart)
+  const [stripeToken,setStripeToken]=React.useState(null)
+  const onToken=(token)=>
+  {
+    setStripeToken(token)
+  }
   return (
     <Container>
         <Navbar/>
@@ -215,7 +223,15 @@ function Cart() {
                         <SummaryItemText >Total</SummaryItemText>
                         <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                     </SummaryItem>
-                    <Button>CHECKOUT NOW</Button>
+                    <StripeCheckout
+                    token={onToken}
+                    stripeKey={KEY}
+                    amount={cart.total*100}
+                    
+                    >
+                        <Button>CHECKOUT NOW</Button>
+                    </StripeCheckout>
+                   
                 </Summary>
             </Bottom>
         </Wrapper>
