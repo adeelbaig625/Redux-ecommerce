@@ -7,8 +7,9 @@ import { Add, Remove } from '@mui/icons-material'
 import { mobile } from '../responsive'
 import { useSelector } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout'
+import { userRequest } from '../requestMethod'
 
-const KEY=process.env.REACT_APP_STRIPE;
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -161,8 +162,27 @@ function Cart() {
   const [stripeToken,setStripeToken]=React.useState(null)
   const onToken=(token)=>
   {
+    console.log(token)
     setStripeToken(token)
   }
+  React.useEffect(()=>
+  {
+      const makeRequest= async()=>
+      {
+        try{
+          const res = await userRequest.post("/checkout/payment",{
+            tokenId:stripeToken,
+            amount:cart.total*100
+          })
+          console.log(res)
+        }
+        catch(e)
+        {
+
+        }
+      }
+      stripeToken && makeRequest();
+  },[stripeToken,cart.total])
   return (
     <Container>
         <Navbar/>
@@ -174,7 +194,7 @@ function Cart() {
             <Top>
                 <TopButton>CONTINUE SHOPPING</TopButton>
                 <TopTexts>
-                    <TopText>Sopping Bag(2)</TopText>
+                    <TopText>Shopping Bag(2)</TopText>
                     <TopText>Your Wishlist(0)</TopText>
                 </TopTexts>
                 <TopButton type='filled'>CHECKOUT NOW</TopButton>
@@ -225,7 +245,12 @@ function Cart() {
                     </SummaryItem>
                     <StripeCheckout
                     token={onToken}
-                    stripeKey={KEY}
+                    billingAddress
+                    shippingAddress
+                    name='Adeel Store'
+                    description='Your total is 1444'
+                    stripeKey='pk_test_51IFxnJBmybccj1eJd2cz3ICskmBP3mCW29Rl5AGoZYfWNdr0BXxfLJqicXU6MvanIsyuAZbh0uucaxf1YurGWMZy00r4ZEdI4O'
+                    
                     amount={cart.total*100}
                     
                     >
