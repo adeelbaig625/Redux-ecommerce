@@ -49,6 +49,12 @@ color:white;
 cursor:pointer;
 `;
 const Login = () => {
+  const [username,setUsername]=React.useState("")
+  const [password,setPassword]=React.useState("")
+  const handleClick=(e)=>
+  {
+    e.preventdefault()
+  }
   return (
     <Container>
        <Wrapper>
@@ -57,10 +63,10 @@ const Login = () => {
            </Title>
            <Form>
                
-               <Input placeholder="username"/>
-               <Input placeholder="password"/>
+               <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
+               <Input placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
         
-               <Button>LOGIN</Button>
+               <Button onClick={handleClick}>LOGIN</Button>
                <Link>FORGOT PASSWORD?</Link>
                <Link>CREATE A NEW ACCOUNT</Link>
            </Form>
