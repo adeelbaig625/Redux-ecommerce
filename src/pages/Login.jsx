@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from "styled-components"
 import { mobile } from '../responsive';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/apiCalls';
+
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -51,9 +54,11 @@ cursor:pointer;
 const Login = () => {
   const [username,setUsername]=React.useState("")
   const [password,setPassword]=React.useState("")
+  const dispatch=useDispatch()
   const handleClick=(e)=>
   {
     e.preventdefault()
+    login(dispatch,{username,password})
   }
   return (
     <Container>
@@ -64,7 +69,7 @@ const Login = () => {
            <Form>
                
                <Input placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
-               <Input placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+               <Input placeholder="password" type={'password'} onChange={(e)=>setPassword(e.target.value)}/>
         
                <Button onClick={handleClick}>LOGIN</Button>
                <Link>FORGOT PASSWORD?</Link>
