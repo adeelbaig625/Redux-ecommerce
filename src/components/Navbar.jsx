@@ -78,7 +78,7 @@ const Navbar = () => {
           <Logo>Store.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
+          <MenuItem onClick={() => navigate("/register")}>REGISTER</MenuItem>
           <MenuItem onClick={() => navigate(`/login`)}>SIGN IN</MenuItem>
           <MenuItem onClick={() => navigate(`/cart`)}>
             <Badge badgeContent={quantity} color="primary">
