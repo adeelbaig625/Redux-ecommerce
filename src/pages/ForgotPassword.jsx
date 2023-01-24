@@ -63,39 +63,30 @@ const Error = styled.span`
   color: red;
 `;
 
-const Login = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const ForgotPassword = () => {
+  const [Email, setEmail] = React.useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isFetching, error } = useSelector((state) => state.user);
   const handleClick = (e) => {
     e.preventdefault();
-    login(dispatch, { username, password });
   };
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>Enter email</Title>
         <Form>
           <Input
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input
-            placeholder="password"
-            type={"password"}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
           />
 
-          <Button onClick={handleClick} disabled={isFetching}>
-            LOGIN
-          </Button>
-          {error && <Error>Something went wrong...</Error>}
-          <Link onClick={() => navigate("/forgotPassword")}>
-            FORGOT PASSWORD?
-          </Link>
+          <Button onClick={handleClick}>SEND EMAIL</Button>
+          {/* {error && <Error>Something went wrong...</Error>} */}
+          {/* <Link>FORGOT PASSWORD?</Link> */}
+          <Link onClick={() => navigate("/register")}>LOGIN</Link>
           <Link onClick={() => navigate("/register")}>
             CREATE A NEW ACCOUNT
           </Link>
@@ -105,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

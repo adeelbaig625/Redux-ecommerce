@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ForgotPassword from "./pages/ForgotPassword";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
