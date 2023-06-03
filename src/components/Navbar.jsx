@@ -75,7 +75,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Store.</Logo>
+          <Logo>Adi Store.</Logo>
         </Center>
         <Right>
           <MenuItem onClick={() => navigate("/register")}>REGISTER</MenuItem>
